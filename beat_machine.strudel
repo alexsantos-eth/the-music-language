@@ -1,0 +1,101 @@
+// author: AlexSantos
+setcpm(120/4)
+
+
+
+
+
+
+
+$: s("sbd*4")
+  .color("#FFF")
+  ._scope()
+
+
+
+
+
+
+
+$: s("hh*8")
+  .bank("RolandTR909")
+  .color("#EEE")
+  ._scope()
+
+
+
+
+
+
+$: s("rim*4")
+  .color("#DDD")
+  ._scope()
+
+
+
+
+
+
+
+$: s("cp")
+  .fast(2)
+  .bank("RolandTR909")
+  .color("#CCC")
+  .room(1)
+  .lpf(saw.range(100, 3000).slow(8))
+  .gain(0.3)
+  ._scope()
+
+
+$: note("[c e] [d d] - a".add("12"))
+  .room(0.5)
+  .fast(2)
+  .s("supersaw")
+  .distort("2:0.1")
+  .lpenv("4")
+  .lpf("<1000 500>/2")
+  .color("#00F")
+  ._pianoroll()
+
+$: note("e d e <g [a a]>")
+  .s("sawtooth")
+  .fast("<2 - 2>")
+  .vowel("i")
+  .gain(saw.slow(8))
+  .lpf("<500 1000>")
+  .color("#00E")
+  ._pianoroll()
+
+
+$: note(
+    "<c3 c4>*8"
+  )
+  .gain(saw.range(0, 0.5).slow(8))
+  .s("gm_electric_guitar_muted")
+  .color("#0F0")
+  ._pianoroll()
+
+
+
+$: note("a3")
+  .fast(8)
+  .room(4)
+  .gain(saw.range(0, 0.1).slow(8))
+  .sound("gm_voice_oohs")
+  .color("#0E0")
+  ._pianoroll()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

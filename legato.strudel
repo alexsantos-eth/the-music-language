@@ -1,0 +1,19 @@
+setcpm(120/8)
+
+
+$: s("hh*16, sbd*8, rim*4")
+  ._scope()
+
+$: note("c*16")
+  .s("gm_electric_guitar_muted")
+  .gain(saw.range(0,0.5).slow(16))
+  ._punchcard()
+
+$: note("[e e] f <f [f f]> <[f f] a> [g g] g f e".add(12))
+  .gain(saw.range(0,0.5).slow(16))
+  .fast("<1 1 1 2>")
+  .lpf("<500 500 300 500>")
+  .lpenv("<3 2>")
+  .room("1")
+  .s("supersaw")
+  ._punchcard()

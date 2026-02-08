@@ -1,0 +1,46 @@
+setcpm(120/8)
+
+// semitonos de c3 -> c c# d d# e f f# g g# a a# b
+// Escala C:major -> c d e f g a b c4 (t t s t t t s)
+// Acordes C:major -> [ M m m M M m dim ]
+// Notas de acordes C:major -> 
+
+    // [ b, d, f ]
+    // [ c, e, g ]
+    // [ a, c, e ] 
+    // [ d, f, a ]
+    // [ f, a, c ]
+    // [ e, g, b ]
+    // [ g, b, d ]
+
+$: note("[ c, e, [g g] ] [ f2, a, c ] [ a, c, [e e]] [ e, a, c]")
+  .slow(2)
+  .s("steinway")
+  .lpf("150")
+  ._pianoroll()
+
+$: note("[g g] - <- [e e]> -")
+  .fast(2)
+  .gain(0.2)
+  .s("gm_voice_oohs")
+  ._pianoroll()
+
+$: note("- - - <[a b] [g e] [e d] [f g]>")
+  .s("supersaw")
+  .fast(2)
+  .lpf("<20000 15000>")
+  .gain(0.3)
+  ._pianoroll()
+
+$: s("cp")
+  .fast(2)
+  .bank("RolandTR909")
+  .gain(0.3)
+  ._scope()
+$: s("hh*16")
+$: s("sbd*8")
+$: note("c*4")
+  .fast("<2 2 4>")
+  .gain(0.3)
+  .s("gm_electric_guitar_muted")
+  ._scope()

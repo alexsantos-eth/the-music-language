@@ -1,0 +1,80 @@
+// CLASE DE INTERVALOS
+// root
+// 2dim
+// 2m -> c:minor
+// 2M -> c:major
+// 2aug
+// 3dim
+// 3m -> c:minor
+// 3M -> c:major
+// 3aug
+// 4dim
+// 4justa -> cm, C
+// 4aug
+// 5dim
+// 5justa -> cm, C
+// 5aug
+// 6dim
+// 6m -> c:minor
+// 6M -> c:major
+// 6aug
+// 7dim
+// 7m -> c:minor
+// 7M -> c:major
+// 8justa -> cm, C
+
+// ACORDES c:minor
+// C E G, D F A, E G B, F A C, G B D, A C E, B D F
+
+setcpm(60)
+
+CHORDS: note(`
+    [f, a, c]
+    [a, c, e]
+    [f, a, c]
+    [g, b, d]
+  `)
+  .s("piano")
+  .slow(8)
+  .gain(0.3)
+  .lpf("500")
+  ._pianoroll()
+BASELINE: note(`
+    <[c -] [e -] [c -] d*2>
+    <[c -] [e -] [c -] d*2>
+    <[c d] [e -] [c d] c*2>
+    <[d e] [e -] [d e] c*2>
+  `)
+  .slow(2)
+  .s("gm_electric_guitar_muted")
+  .gain(0.5)
+  ._pianoroll()
+
+// [F A F G]
+MELODY: note(`
+    <[g f] [a a] [f f] [g g]>
+    <[f -] [a b] [f g] [a f]>
+    <[f f] c4    [f -] [f e]>
+    <[g -] [- g] f     [e f]>
+  `)
+  .s("supersaw")
+  .slow(2)
+  .gain(0.5)
+  ._pianoroll()
+
+VOICE: note(`
+    <[- -] [- -] c4    [- -]>
+    <[- -] [- -] [- -] [- -]>
+    <[- -] [a a] [- -] [- -]>
+    <[- -] [a b] [- -] [- -]>
+  `)
+  .s("gm_voice_oohs")
+  .slow(2)
+  .gain(0.5)
+  ._pianoroll()
+
+DRUMS: 
+  stack(
+    s("hh*4, sbd*2").gain(0.7),
+    s("cp").gain(0.5).bank("RolandTR909")
+  )._scope()

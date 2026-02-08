@@ -1,0 +1,15 @@
+setcpm(120 / 4)
+
+// COMPAS: 4 TIEMPOS
+// UN CICLO -> COMPAS -> 2S por escala 4/4
+// O SEA 4 NOTAS POR CICLO DE DURACION 2S
+
+// nota se pueden nombrar los sonidos
+bass: note("{c}%2")
+  .s("piano")
+  ._pianoroll()
+
+_$: note("{c d e}%2")
+  .s("piano")
+  ._pianoroll()
+_$: n("c/2").s("piano")

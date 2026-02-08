@@ -1,0 +1,40 @@
+setcpm(120/4)
+
+$: s("hh*8")
+  .bank("RolandTR909")
+  .gain(0.8)
+
+$: s("bd*4")
+  .bank("RolandTR909") 
+  ._scope()
+
+$: note("d*8")
+  .s("gm_electric_guitar_muted")
+  ._scope()
+
+$: note("g g <f f f a> -")
+  .fast(2)
+  .lpf(2000)
+  .gain(saw.slow(8))
+  .s("supersaw")
+  ._punchcard()
+
+$: note("[[f f] g]/2")
+  .fast("<0 2 4>")
+  .room(1)
+  .s("gm_voice_oohs")
+  ._punchcard()
+
+$: note("[<f g> e <g d> d]")
+  .s("piano")
+  .hurry(2)
+  .lpf(saw.range(100, 3000).slow(8))
+  ._punchcard()
+
+
+
+
+
+
+
+

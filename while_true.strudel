@@ -1,0 +1,46 @@
+// Alex Santos
+setcpm(120/8)
+
+$: note("[c c] d e [f f] e g e d".add(12))
+  .s("piano")
+  .lpf("<200 500>")
+  .fast(2)
+  .gain(saw.slow(16))
+  .attack("<0.2 0.15>")
+  .lpenv(10)
+  ._pianoroll()
+$: note("<c2*8 c3*8>")
+  .s("piano")
+  .gain(saw.range(0, 0.2).slow(16))
+  ._pianoroll()
+
+$: note("c*16")
+  .s("gm_electric_guitar_muted")
+  .gain(saw.slow(16))
+  ._pianoroll()
+
+$: s("hh*16")
+  .gain(0.3)
+  .bank("RolandTR909")
+  ._scope()
+
+
+
+$: s("sbd*8")
+  .gain(saw.slow(16))
+  ._scope()
+
+$: s("cp*4").bank("RolandTR909")
+  .gain(saw.slow(16))
+  ._scope()
+
+$: note("[f f] [g a]")
+  .fast(4)
+  .gain(saw.range(0, 0.2).slow(16))
+  .lpf(saw.range(500, 5000).slow(16))
+  .lpenv(1)
+  .s("supersaw")
+  ._pianoroll()
+
+
+
