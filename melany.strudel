@@ -59,7 +59,7 @@ MELODY: note(`
   `)
   .s("supersaw")
   .slow(2)
-  .gain(0.5)
+  .gain(saw.range(0, 0.5).slow(16))
   ._pianoroll()
 
 VOICE: note(`
