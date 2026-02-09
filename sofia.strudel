@@ -1,0 +1,98 @@
+// DO DO# RE RE# MI FA FA# SOL SOL# LA LA# SI
+// RE MAYOR => RE MI FA# SOL LA SI DO#
+// MmmMMmDimRw
+// Acordes d:major: [ d, fa#, a ] [ e, g, b, ] [ f#, a, c# ] [ g, b, d4 ] [ a, c#, e, ] [ b, d, f#, ] [ c#, e, g ]
+
+setcpm(60)
+
+_CHORDS: note(`
+    [ d,  f#, a ]
+    [ e,  g,  b ]
+    [ f#, a, c# ]
+    [ g,  b, d4 ]
+    [ a,  c#, e4 ]
+    [ b,  d4, f#4 ]
+    [ c#, e4,  g4 ]
+    [ d,  f#, a ]
+  `)
+  .s("piano")
+  .slow(16)
+  ._pianoroll()
+
+CHORDS_PROGRESS: note(`
+    [ d,  f#4, a4  ] 
+    [ a4, c#4, e4  ]
+    [ b4, d4,  f#4 ]
+    [ d4, f#4, a4  ]
+    [ d,  f#4, a4  ] 
+    [ a4, c#4, e4  ]
+    [ b4, d4,  f#4 ]
+    [ a4, c#4, e4  ]
+  `)
+  .s("piano")
+  .slow(16)
+  .gain(0.5)
+  ._pianoroll()
+
+BASELINE: note(`<
+    [ d   d   d   d   d   d   e   d       ] 
+    [ c#4 c#4 c#4 c#4 c#4 c#4 d4  c#4     ]
+    [ d4  d4  d4  d4  d4  d4  f#4 <e4 d4> ] 
+    <
+      [ f#4 f#4 f#4 f#4 f#4 f#4 f#4 [f#4 f#4] ]  
+      [ c#4 c#4 c#4 c#4 c#4 c#4 d4  c#4       ]
+    >
+  >`)
+  .s("gm_electric_guitar_muted")
+  .slow(2)
+  .gain(saw.slow(16))
+  ._pianoroll()
+
+MELODY: note(`<
+    [ d  f#4 a4  a4 e4  a4  b4  e4        ] 
+    [ -  e4  -   -  -   e4  a4  b4        ]
+    [ b4 d4  f#4 -  -   f#4 f#4 [f#4 f#4] ]
+    [ a4 f#4 f#4 a4 f#4 f#4 -   -         ]
+  >`)
+  .s("supersaw")
+  .slow(2)
+  .lpf(saw.range(0, 5000).slow(16))
+  .lpenv(2)
+  .room(0.7)
+  ._pianoroll()
+
+VOICE: 
+  note(`<
+    [ - - -  -  -  -   - - ] 
+    [ - - e4 a4 b4 -   - - ]
+    [ - - -  b4 d4 f#4 - - ]
+    [ - - -  -  -  -   - - ] 
+  >`)
+  .s("gm_voice_oohs")
+  .gain(0.5) 
+  .lpf("<- 10000 1000 ->")
+  .fast("<0 <0 1> <0 1> 0>")
+  .slow(2)
+  ._pianoroll()
+
+DRUMS: s("hh*4, sbd*2, sd")
+  .bank("RolandTR909")
+  .fast("<<0 1> <0 1> <0 1> <0 1> <0 1> <0 1> <1 2> <1 2>>")
+  .gain(saw.range(0,0.5).slow(16))
+  ._scope()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
