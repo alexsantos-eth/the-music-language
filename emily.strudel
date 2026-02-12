@@ -74,3 +74,10 @@ MELODY: note(`
   .lpf("<10000 10000 10000 5000>")
   .gain(MELODY_GAIN)
   ._pianoroll() 
+
+
+DRUMS: 
+  stack(
+    s("hh*4, sbd*2").gain(0.7),
+    s("cp").gain(0.5).bank("RolandTR909")
+  )._scope()
