@@ -1,0 +1,76 @@
+// emily in c:minor
+setcpm(60)
+
+// c d eb f g ab bb
+const cx = 4;
+const CHORDS_GAIN = slider(0.4, 0, 1, 0.1)
+const VIOLIN_GAIN = slider(0.3, 0, 1, 0.1)
+const PIANO_1_GAIN = slider(0.3, 0, 1, 0.1)
+const BASELINE_GAIN = slider(0.5, 0, 1, 0.1)
+const MELODY_GAIN = slider(1, 0, 1, 0.1)
+
+CHORDS: note(`
+    [c4, eb4, g]
+    [eb4, g, bb]
+    [g, bb, d4]
+    [bb3, d4, f4]
+  `)
+  .s("piano")
+  .slow(cx)
+  .legato(2)
+  .gain(CHORDS_GAIN)
+  ._pianoroll()
+
+VIOLIN:  note(`
+    eb4*2
+    eb4*2
+    d4*2
+    [f4 f4]
+  `)
+  .lpf("3000")
+  .s("gm_violin, supersaw")
+  .slow(cx)
+  .room(2)
+  .gain(VIOLIN_GAIN)
+  ._pianoroll()
+
+
+
+PIANO_1: note(`
+    [eb4 -]*2
+    [eb4 -]*2
+    [d4 -]*2
+    [f4 f4]*2
+  `.add(12))
+  .s("square")
+  .slow(cx)
+  .fast(2)
+  .gain(PIANO_1_GAIN)
+  .lpf("<1000 300>")
+  ._pianoroll()
+
+
+BASELINE: note(`
+    [g2 -]*2
+    [g2 - g2 ab2]
+    [g2 - g2 [g2 g2]]
+    [bb]*4
+  `)
+  .s("gm_electric_guitar_muted")
+  .slow(cx)
+  .gain(BASELINE_GAIN)
+  ._pianoroll()
+
+
+MELODY: note(`
+    [- - g eb4]
+    [eb4 - eb4 -]
+    [bb3 - bb3 - d4]
+    [- g [bb bb] d4]
+  `.add(12))
+  .s("supersaw")
+  .slow(cx)
+  .room(1)
+  .lpf("<10000 10000 10000 5000>")
+  .gain(MELODY_GAIN)
+  ._pianoroll() 
