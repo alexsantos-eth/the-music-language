@@ -12,13 +12,13 @@ const melody_g = slider(1,0,1,0.1)
 
 // circuitsdrumtracks, linn9000, polaris
 
-kick: s("[- bd]*4")
+kick: s("bd*4, sd*2")
   .bank("linn9000")
   .gain(kick_g)
   ._scope()
 // compurhythm8000, d70, linn9000
 
-hats: s("[hh -]*4")
+hats: s("[- hh]*4")
   .bank("d70")
   .gain(hats_g)
   ._scope()
