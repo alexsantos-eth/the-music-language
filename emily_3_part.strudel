@@ -1,0 +1,87 @@
+// emily 3
+setcpm(120/4)
+
+const cx = 4
+const kick_g = slider(0.5,0,1,0.1)
+const hats_g = slider(0.5,0,1,0.1)
+const baseline_g = slider(0.5,0,1,0.1)
+const chords_g = slider(0.3,0,1,0.1)
+const arp_g = slider(0.7,0,1,0.1)
+const melody_g = slider(1,0,1,0.1)
+
+
+// circuitsdrumtracks, linn9000, polaris
+
+kick: s("[- bd]*4")
+  .bank("linn9000")
+  .gain(kick_g)
+  ._scope()
+// compurhythm8000, d70, linn9000
+
+hats: s("[hh -]*4")
+  .bank("d70")
+  .gain(hats_g)
+  ._scope()
+
+// gm_bird_tweet, gm_blown_bottle, gm_choir_aahs, gm_contrabass, gm_drawbar_organ, gm_flute, gm_fx_atmosphere, gm_fx_echoes, gm_fx_rain, gm_glockenspiel , gm_guitar_fret_noise, gm_harpsichord, gm_kalimba, gm_lead_3_calliope, gm_lead_7_fifths, gm_marimba, gm_ocarina, gm_overdriven_guitar, gm_pad_choir, gm_pad_new_age, gm_percussive_organ, gm_sitar, gm_synth_bass_2, gm_synth_choir
+
+
+baseline: note(`
+      [d - d - d e c f] 
+      [g - g - f f d [d d]] 
+      [e - e - e e f g] 
+      [b - b - c4 c4 d4 [d4 d4]]
+  `)
+  .s("gm_synth_bass_2")
+  .gain(baseline_g)
+  .slow(cx)
+  ._pianoroll()
+
+
+
+chords: note(`
+    [d4, f, a, f2]
+    [f, a, c4, f2]
+    [a, c4, e, e2]
+    [f, a, c4, f2]
+  `)
+  .s("gm_fx_echoes")
+  .gain(chords_g)
+  .lpf("1000")
+  .slow(cx)
+  ._pianoroll()
+
+
+arp: n(`
+    5 [6 6] 7 [3 3] 6 4 4 6
+  `)
+  .s("gm_marimba")
+  .slow(cx/4)
+  .gain(arp_g)
+  ._pianoroll()
+
+arp_2: n("{<[1 1] 2> <3 [5 5]> <2 3> 0}!2")
+  .s("gm_kalimba")
+  .gain(arp_g)
+  ._pianoroll()
+
+
+melody: n(`
+    [3 - 3 - 3 3 [4 4] 3]
+    [4 - 4 - 4 - 4 -]
+    [4 - 4 - 4 3 [4 4] 3]
+    [2 - 2 - 2 - 2 -]
+  `.late(0.5))
+  .s("gm_drawbar_organ")
+  .lpf("5000")
+  .lpenv(2)
+  .lpq(4)
+  .room(1)
+  .slow(cx)
+  .postgain(melody_g)
+  ._pianoroll()
+
+tweet: note("- - - [[<a e> -] -] - - - -")
+  .s("gm_bird_tweet")
+  .slow(cx)
+  ._pianoroll()

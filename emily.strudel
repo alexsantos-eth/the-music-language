@@ -6,8 +6,8 @@ const cx = 4;
 const CHORDS_GAIN = slider(0.4, 0, 1, 0.1)
 const VIOLIN_GAIN = slider(0.3, 0, 1, 0.1)
 const PIANO_1_GAIN = slider(0.3, 0, 1, 0.1)
-const BASELINE_GAIN = slider(0.5, 0, 1, 0.1)
 const MELODY_GAIN = slider(1, 0, 1, 0.1)
+const BASELINE_GAIN = slider(0.5, 0, 1, 0.1)
 
 CHORDS: note(`
     [c4, eb4, g]

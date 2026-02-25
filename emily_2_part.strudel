@@ -1,0 +1,78 @@
+// emily_next in c:minor
+setcpm(120/4)
+
+// SCALE: c d eb f g ab bb
+const cx = 4;
+const KICK_GAIN = slider(1, 0, 1, 0.1) 
+const HATS_GAIN = slider(1, 0, 1, 0.1)
+const CHORDS_GAIN = slider(0.3, 0, 1, 0.1)
+const BASELINE_GAIN = slider(0.5, 0, 1, 0.1)
+const MELODY_1_GAIN = slider(0.7, 0, 1, 0.1)
+const MELODY_SHADOW_GAIN = slider(0.5, 0, 1, 0.1)
+const VOICE_OOHS_GAINS = slider(0.4, 0, 1, 0.1)
+ 
+KICK: s("bd*4, sd*2")
+  .bank("RolandTR909")
+  .gain(KICK_GAIN)
+  ._pianoroll()
+
+HATS: s("[- hh]*4")
+  .gain(HATS_GAIN)
+  ._pianoroll()
+
+CHORDS: note(`
+    [c4, eb, g, eb2]*2
+    [ab, c4, eb, eb2]*2
+    [bb, d4, f, f2]*2
+    [eb, ab, c4, eb2]*2
+  `)
+  .s("piano")
+  .gain(CHORDS_GAIN)
+  .slow(cx)
+  ._pianoroll()
+
+BASELINE: note(`
+    [eb eb eb eb eb g g bb]
+    [g  g  g  g  g  ab ab [bb bb]]
+    [f  f  f  f  f  g  g [ab ab]]
+    [f  f  f  f  f  eb eb d]
+  `)
+  .s("gm_electric_guitar_muted")
+  .gain(BASELINE_GAIN)
+  .slow(cx)
+  ._pianoroll()
+
+MELODY_1: note(`
+    [- [c4 c4] ab4 [eb4 eb4]]
+    [d4 - [d4 d4] eb4]
+    [bb4 - bb4 [f4 ab4]]
+    [- f4 g4 d4]
+  `)
+  .s('supersaw')
+  .lpf("<5000 7000>")
+  .distort("2:0.25")
+  .lpenv(1.2)
+  .room(1)
+  .gain(MELODY_1_GAIN)
+  .slow(cx)
+  ._pianoroll()
+
+MELODY_SHADOW: note(`
+    [- ab4]*4
+    [eb4 -]*4
+    [- ab4]*4
+    [g4 -]*4
+  `)
+  .s('piano')
+  .gain(MELODY_SHADOW_GAIN)
+  .slow(cx)
+  ._pianoroll()
+
+VOICE_OOHS: note(`
+    [[f4 ab4] - - - - - - -]
+  `)
+  .s('gm_voice_oohs')
+  .room(1)
+  .gain(VOICE_OOHS_GAINS)
+  .slow(cx/2)
+  ._pianoroll()
