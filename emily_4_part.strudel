@@ -1,0 +1,61 @@
+// emily 4
+setcpm(120/4)
+
+const baseline_g = slider(0.5,0,1,0.1)
+const chords_g = slider(0.1,0,1,0.1)
+const arp_g = slider(0.5,0,1,0.1)
+const kicks_g = slider(1,0,1,0.1)
+const melody_g  = slider(1,0,1,0.1)
+
+const mouse_lpf = mousex.range("500", "3000")
+
+baseline: note(
+      "<e g b>"
+      .euclid(3,8)
+      .stack(
+        "<e2 g2 b2>"
+        .euclid(5,8)
+        .rev()
+      )
+    )
+    .s("supersaw, gm_pad_choir")
+    .gain(baseline_g)
+    .lpf(mouse_lpf)
+    ._pianoroll()
+
+
+kicks: s("polaris_bd*4, rim*2")
+  .gain(kicks_g)
+  ._scope()
+
+chords: chord("<E G <B A> G>!2")
+  .s("gm_violin, supersaw")
+  .voicing()
+  .lpf(mouse_lpf)
+  .room(1)
+  .gain(chords_g)
+  ._pianoroll()
+
+arp: n("{<6 7 8> 5 6 7 <6 7 8> -}")
+  .euclid(5, 8)
+  .fast(2)
+  .s("gm_blown_bottle")
+  .lpf("5000")
+  .scale("c:major")
+  .gain(arp_g)
+  ._pianoroll()
+  
+melody: note(`<
+    [g - [a a] [b b]]
+    [- g a -]
+    [- <[g g] [a a]> b [e e]]
+    [g a g -]
+  >`)
+  .s("gm_synth_bass_2, gm_choir_aahs")
+  .add("<0 12>")
+  .lpenv(2)
+  .lpq(5)
+  .lpf(mouse_lpf)
+  .gain(melody_g)
+  .room(1)
+  ._pianoroll()
