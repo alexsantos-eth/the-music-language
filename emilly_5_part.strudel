@@ -1,0 +1,61 @@
+// emely 5
+setcpm(120/4)
+
+// C - D - EB - F - G - AB - BB - C
+
+const cx = 4;
+const chords_g = slider(0.3,0,1,0.1)
+const baseline_g = slider(0.6,0,1,0.1)
+const arp_g = slider(0.6,0,1,0.1)
+const melody_g = slider(1,0,1,0.1)
+const kicks_g = slider(1,0,1,0.1)
+
+chords: n(`
+    [[7 7], 2, 4, -5]
+    [2, 4, [6 6], -5]
+    [4, [6 6], 8, -3]
+    [3, 5, [7 7], -4]
+  `)
+  .scale("C:minor")
+  .s("piano, gm_violin")
+  .slow(cx)
+  .gain(chords_g)
+  ._pianoroll()
+
+
+
+arp: n("<7 4 8 3 7 2 4 2>")
+  .fast(8)
+  .scale("C:minor")
+  .gain(arp_g)
+  .s("gm_glockenspiel, gm_ocarina")
+  ._pianoroll()
+
+
+melody: n(
+    `<
+      [2 - 2 - 2 1 2 1]
+      [3 - 4 [1 1] 2 - [2 2] -]
+      [3 2 1 4 - [3 3] - 2]
+      [4 - 4 [4 4] [2 2] - 1 4]
+    >`.add(12))
+  .s("gm_choir_aahs")
+  .scale("C:minor")
+  .lpf("10000")
+  .lpq("5")
+  .room(2)
+  .distort("3:0.2")
+  .gain(melody_g)
+  ._pianoroll()
+
+kicks: s("polaris_bd*4, rim*2, hh*8")
+  .gain(kicks_g)
+  ._scope()
+
+arp2: n(irand(8))
+  .struct("x")
+  .scale("C:minor")
+  .fast(8)
+  .s("gm_marimba")
+  .gain(baseline_g)
+  ._pianoroll()
