@@ -1,0 +1,91 @@
+await initHydra()
+setcpm(120/4)
+
+s0.initCam(0)
+
+solid(0,0,0) 
+  .layer( 
+    shape(100) 
+    .color(0, 0.6, 0.8)
+  )
+  .scale(0.9,1.65,1)
+  .scrollX(-0.26)            
+  .scrollY(-0.35)
+  .layer(
+    src(s0)
+    .scale(0.25, 2.1, 1.04)
+    .mask(shape(100, 0.25).scale(1,1.65,1))  
+    .scrollX(-0.26)            
+    .scrollY(-0.35)
+  )
+  .out()
+
+const scale = "c:minor:pentatonic"
+const baseline_g = slider(0.7,0,1,0.1)
+const chords_g = slider(0.7,0,1,0.1)
+const arp_g = slider(0.7,0,1,0.1)
+const baseline2_g = slider(1,0,1,0.1)
+const melody_g = slider(1,0,1,0.1)
+const lpf_m = mousex.range(500, 5000)
+const kick_g = slider(1,0,1,0.1)
+
+baseline: 
+  n(`<
+    [-5*8]
+    [-4*8]
+    [-3*8]
+    [-4*8]
+  >`)
+  .scale(scale)
+  .s("gm_electric_guitar_muted, piano")
+  .gain(baseline_g)
+  ._pianoroll()
+
+chords: 
+  n(`<
+    [8, 2, 4, -5]
+    [2, 4, 6, -5]
+    [4, 6, 8, -3]
+    [2, 4, 6, -5]
+  >`)
+  .s("piano")
+  .scale(scale)
+  .gain(chords_g)
+  ._pianoroll()
+
+arp: 
+  n("2 1 3 6")
+  .fast(2)
+  .scale(scale)
+  .gain(arp_g)
+  .s("supersaw")
+  ._pianoroll()
+
+baseline2: 
+  n(
+    "0*8".euclid(3, 8)
+  )
+  .scale(scale)
+  .s("supersaw, gm_marimba")
+  .gain(baseline2_g)
+  ._pianoroll()
+melody: 
+  n(`
+    [2 - 2 - 2 1 2 1]
+    [3 - 4 [1 1] 2 - [2 2] -]
+    [3 2 1 4 - [3 3] - 2]
+    [4 - 4 [4 4] [2 2] - 1 4]
+  `.add(12))
+  .slow(4)
+  .scale(scale)
+  .s("supersaw, gm_choir_aahs")
+  .gain(melody_g)
+  .lpf(lpf_m)
+  .lpq("5")
+  .room(0.8)
+  .distort("3:0.2")
+  ._pianoroll()
+
+kicks: s("polaris_bd*4, hh*8, rim*2")
+  .gain(kick_g)
+  ._scope()
